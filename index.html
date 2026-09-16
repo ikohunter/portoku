@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hendra Agus Loriko | Portfolio</title>
+<meta name="description" content="Hendra Agus Loriko — Lulusan D3 Manajemen Informatika Politeknik Negeri Lampung. Web developer, pemimpin organisasi, dan kreator visual (fotografi, videografi, desain).">
+<meta name="author" content="Hendra Agus Loriko">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hendra Agus Loriko | Portfolio">
+<meta property="og:description" content="Technology × Leadership × Creativity — Portfolio profesional Hendra Agus Loriko, lulusan D3 Manajemen Informatika Politeknik Negeri Lampung.">
+<!-- Tambahkan foto sampul dan aktifkan baris berikut jika sudah tersedia:
+<meta property="og:image" content="assets/img/og-cover.jpg"> -->
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+
+<!-- Fonts: Fraunces (display serif) + Inter (UI sans) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="dark">
+
+<!-- ============ LOADER ============ -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader__mark">
+    <span class="loader__initials">HL</span>
+    <span class="loader__name">HENDRA AGUS LORIKO</span>
+  </div>
+</div>
+
+<!-- ============ SKIP LINK ============ -->
+<a class="skip-link" href="#main">Langsung ke konten utama</a>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#home" class="nav__brand" aria-label="Beranda Hendra Agus Loriko">HL<span class="nav__brand-dot">.</span></a>
+
+    <nav class="nav__links" id="navLinks" aria-label="Navigasi utama">
+      <a href="#about" class="nav__link">Tentang</a>
+      <a href="#experience" class="nav__link">Pengalaman</a>
+      <a href="#projects" class="nav__link">Proyek</a>
+      <a href="#creative" class="nav__link">Karya Kreatif</a>
+      <a href="#skills" class="nav__link">Keahlian</a>
+      <a href="#contact" class="nav__link">Kontak</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti mode terang/gelap" aria-pressed="false">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+        <i class="fa-solid fa-sun" aria-hidden="true"></i>
+      </button>
+      <button class="nav__burger" id="navBurger" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__grid"></div>
+      <canvas id="particleCanvas" class="hero__particles"></canvas>
+      <div class="hero__glow hero__glow--a"></div>
+      <div class="hero__glow hero__glow--b"></div>
+    </div>
+
+    <div class="hero__inner">
+      <div class="hero__text" data-reveal>
+        <p class="hero__eyebrow">Hello, I'm</p>
+        <h1 class="hero__name">Hendra Agus<br>Loriko</h1>
+        <p class="hero__role">Lulusan D3 Manajemen Informatika &middot; Web Developer &middot; Creative &amp; Organization</p>
+        <p class="hero__desc">Lulusan Program Studi D3 Manajemen Informatika Politeknik Negeri Lampung yang memiliki pengalaman dalam pengembangan sistem berbasis web, kepemimpinan organisasi, serta bidang kreatif seperti fotografi, videografi, dan desain.</p>
+
+        <div class="hero__cta">
+          <a href="#projects" class="btn btn--primary">Explore My Work</a>
+          <a href="assets/cv/Hendra-Agus-Loriko-CV.pdf" class="btn btn--ghost" download>Download CV</a>
+        </div>
+
+        <div class="hero__socials" aria-label="Tautan media sosial">
+          <a href="https://www.linkedin.com/in/hendra-agus-loriko-227447293" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Hendra Agus Loriko"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ikoproject_official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Hendra Agus Loriko"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://www.tiktok.com/@bang_riko46" target="_blank" rel="noopener noreferrer" aria-label="TikTok Hendra Agus Loriko"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+          <a href="mailto:hendraagusloriko@gmail.com" aria-label="Kirim email ke Hendra Agus Loriko"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="hero__portrait" data-reveal>
+        <!-- Foto profil: cukup letakkan file bernama persis "profile.jpg" di
+             assets/img/profile.jpg — foto akan tampil otomatis. Jika file
+             belum ada / gagal dimuat, placeholder inisial "HL" akan tetap
+             ditampilkan sebagai cadangan. Tidak perlu mengedit kode apa pun. -->
+        <div class="portrait-frame">
+          <img
+            src="assets/img/profile.jpg"
+            alt="Foto Hendra Agus Loriko"
+            class="portrait-frame__photo"
+            onerror="this.onerror=null;this.style.display='none';this.nextElementSibling.style.display='flex';">
+          <div class="portrait-frame__placeholder" style="display:none;">
+            <span>HL</span>
+          </div>
+          <div class="portrait-frame__ring"></div>
+        </div>
+        <div class="hero__float-card hero__float-card--top">
+          <i class="fa-solid fa-code" aria-hidden="true"></i>
+          <span>Laravel &middot; PHP &middot; MySQL</span>
+        </div>
+        <div class="hero__float-card hero__float-card--bottom">
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <span>Ketua Umum PKSE</span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="hero__scroll" aria-label="Gulir ke bawah">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section about" id="about">
+    <div class="section__inner">
+      <div class="section__head" data-reveal>
+        <p class="section__label">Tentang Saya</p>
+        <h2 class="section__title">About Me</h2>
+        <p class="section__sub">Perjalanan singkat dari bangku sekolah menengah kejuruan hingga menjadi pemimpin organisasi dan pengembang sistem.</p>
+      </div>
+
+      <div class="journey" data-reveal>
+        <div class="journey__path" aria-hidden="true"></div>
+        <ol class="journey__list">
+          <li class="journey__item">SMK</li>
+          <li class="journey__item">Politeknik Negeri Lampung</li>
+          <li class="journey__item">Organisasi</li>
+          <li class="journey__item">PKL</li>
+          <li class="journey__item">Pengembangan Sistem</li>
+          <li class="journey__item">Lulusan &amp; Menunggu Wisuda</li>
+        </ol>
+      </div>
+
+      <div class="timeline timeline--about" data-reveal>
+        <div class="timeline__track" aria-hidden="true"></div>
+
+        <div class="timeline__row">
+          <div class="timeline__year">2023</div>
+          <div class="timeline__card">
+            <h3>Started D3 Manajemen Informatika</h3>
+            <p>Memulai studi di Politeknik Negeri Lampung, Jurusan Teknologi Informasi.</p>
+          </div>
+        </div>
+
+        <div class="timeline__row">
+          <div class="timeline__year">2024</div>
+          <div class="timeline__card">
+            <h3>Secretary — Media Center UKM Al Banna</h3>
+            <p>Menjadi Sekretaris Departemen Media Center, mengawali perjalanan di dunia media dan organisasi.</p>
+          </div>
+        </div>
+
+        <div class="timeline__row">
+          <div class="timeline__year">2025</div>
+          <div class="timeline__card">
+            <h3>Puncak Kepemimpinan &amp; Prestasi</h3>
+            <ul>
+              <li>Mahasiswa Berprestasi 3 Tingkat Diploma Politeknik Negeri Lampung</li>
+              <li>Ketua Umum PKSE Politeknik Negeri Lampung</li>
+              <li>Sekretaris Umum UKM Al Banna</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline__row">
+          <div class="timeline__year">2026</div>
+          <div class="timeline__card">
+            <h3>PKL &amp; Kelulusan</h3>
+            <ul>
+              <li>Praktik Kerja Lapangan — PTPN IV Regional VII Unit Bekri</li>
+              <li>Lulus D3 Manajemen Informatika</li>
+              <li>Menunggu proses wisuda</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section experience" id="experience">
+    <div class="section__inner">
+      <div class="section__head" data-reveal>
+        <p class="section__label">Perjalanan Profesional</p>
+        <h2 class="section__title">Experience</h2>
+        <p class="section__sub">Rekam jejak organisasi, praktik kerja lapangan, dan tanggung jawab yang pernah diemban.</p>
+      </div>
+
+      <div class="exp-list">
+
+        <article class="exp-card exp-card--featured" data-reveal>
+          <div class="exp-card__badge"><i class="fa-solid fa-crown" aria-hidden="true"></i></div>
+          <div class="exp-card__meta">
+            <span class="exp-card__period">Agustus 2025 – September 2026</span>
+            <span class="exp-card__tag">Kepemimpinan Terbesar</span>
+          </div>
+          <h3 class="exp-card__role">Ketua Umum</h3>
+          <p class="exp-card__org">Paguyuban Karya Salemba Empat (PKSE) — Politeknik Negeri Lampung</p>
+          <ul class="exp-card__list">
+            <li>Memimpin dan mengoordinasikan pengurus dalam pelaksanaan program kerja organisasi.</li>
+            <li>Mengarahkan serta mengevaluasi kinerja setiap divisi.</li>
+            <li>Mengambil keputusan strategis dan bertanggung jawab atas jalannya organisasi.</li>
+            <li>Membangun koordinasi dengan pihak kampus, alumni, mitra, dan organisasi mahasiswa.</li>
+            <li>Mengembangkan program kerja untuk mendukung pengembangan dan prestasi anggota.</li>
+            <li>Memimpin rapat serta memastikan hasil keputusan terlaksana dengan baik.</li>
+            <li>Mengawasi administrasi, pelaporan, dan evaluasi kegiatan organisasi.</li>
+          </ul>
+          <div class="exp-card__pillars">
+            <span><i class="fa-solid fa-compass" aria-hidden="true"></i> Leadership</span>
+            <span><i class="fa-solid fa-people-arrows" aria-hidden="true"></i> Coordination</span>
+            <span><i class="fa-solid fa-comments" aria-hidden="true"></i> Communication</span>
+            <span><i class="fa-solid fa-scale-balanced" aria-hidden="true"></i> Decision Making</span>
+          </div>
+        </article>
+
+        <article class="exp-card" data-reveal>
+          <div class="exp-card__meta">
+            <span class="exp-card__period">Februari 2026 – Juni 2026</span>
+          </div>
+          <h3 class="exp-card__role">Praktik Kerja Lapangan</h3>
+          <p class="exp-card__org">PTPN IV Regional VII Unit Bekri</p>
+          <ul class="exp-card__list">
+            <li>Mengembangkan sistem presensi karyawan berbasis web menggunakan Laravel.</li>
+          </ul>
+          <a href="#projects" class="exp-card__link">Lihat proyek utama <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+        </article>
+
+        <article class="exp-card" data-reveal>
+          <div class="exp-card__meta">
+            <span class="exp-card__period">Januari 2025 – Desember 2025</span>
+          </div>
+          <h3 class="exp-card__role">Sekretaris Umum</h3>
+          <p class="exp-card__org">UKM Al Banna — Politeknik Negeri Lampung</p>
+          <ul class="exp-card__list">
+            <li>Mengatur administrasi dan pengarsipan organisasi.</li>
+            <li>Mencatat dan mengarsipkan dokumen.</li>
+            <li>Menyusun draf surat dan dokumen lainnya.</li>
+            <li>Menyusun laporan dan dokumen yang dibutuhkan.</li>
+          </ul>
+        </article>
+
+        <article class="exp-card" data-reveal>
+          <div class="exp-card__meta">
+            <span class="exp-card__period">Januari 2024 – Desember 2024</span>
+          </div>
+          <h3 class="exp-card__role">Sekretaris Departemen Media Center</h3>
+          <p class="exp-card__org">UKM Al Banna — Politeknik Negeri Lampung</p>
+          <p class="exp-card__desc">Bagian dari perjalanan organisasi dan media, mengawali keterlibatan dalam dokumentasi dan konten organisasi.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LEADERSHIP ============ -->
+  <section class="section leadership" id="leadership">
+    <div class="section__inner">
+      <div class="leadership__grid">
+        <div class="leadership__text" data-reveal>
+          <p class="section__label">Leadership &amp; Organization</p>
+          <h2 class="section__title">Memimpin dengan Arah yang Jelas</h2>
+          <p class="leadership__highlight">Ketua Umum PKSE Politeknik Negeri Lampung <span>2025/2026</span></p>
+          <p class="section__sub">Mengoordinasikan pengurus, divisi, dan mitra untuk menjalankan program kerja organisasi secara konsisten — dari perencanaan hingga evaluasi.</p>
+        </div>
+
+        <div class="leadership__pillars" data-reveal>
+          <div class="pillar-card">
+            <i class="fa-solid fa-compass" aria-hidden="true"></i>
+            <h3>Leadership</h3>
+          </div>
+          <div class="pillar-card">
+            <i class="fa-solid fa-people-arrows" aria-hidden="true"></i>
+            <h3>Coordination</h3>
+          </div>
+          <div class="pillar-card">
+            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+            <h3>Communication</h3>
+          </div>
+          <div class="pillar-card">
+            <i class="fa-solid fa-people-group" aria-hidden="true"></i>
+            <h3>Teamwork</h3>
+          </div>
+          <div class="pillar-card">
+            <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+            <h3>Decision Making</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section projects" id="projects">
+    <div class="section__inner">
+      <div class="section__head" data-reveal>
+        <p class="section__label">Portofolio Teknis</p>
+        <h2 class="section__title">Selected Projects</h2>
+        <p class="section__sub">Proyek pengembangan sistem yang dikerjakan selama masa studi dan praktik kerja lapangan.</p>
+      </div>
+
+      <!-- Kartu proyek dirender otomatis oleh script.js dari data di js/projects (lihat script.js -> const projects) -->
+      <div class="project-list" id="projectList" data-reveal></div>
+    </div>
+  </section>
+
+  <!-- ============ CREATIVE ============ -->
+  <section class="section creative" id="creative">
+    <div class="section__inner">
+      <div class="section__head" data-reveal>
+        <p class="section__label">Karya Visual</p>
+        <h2 class="section__title">Creative Works</h2>
+        <p class="section__sub">Kumpulan karya fotografi, videografi, dan desain grafis.</p>
+      </div>
+
+      <div class="creative__filters" data-reveal role="tablist" aria-label="Filter kategori karya kreatif">
+        <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="photography" role="tab" aria-selected="false">Photography</button>
+        <button class="filter-btn" data-filter="videography" role="tab" aria-selected="false">Videography</button>
+        <button class="filter-btn" data-filter="design" role="tab" aria-selected="false">Design</button>
+      </div>
+
+      <!-- Galeri dirender otomatis oleh script.js dari data di const creativeWorks.
+           Ganti path di assets/img/creative/ dengan file asli untuk menampilkan karya sesungguhnya. -->
+      <div class="gallery" id="galleryGrid" data-reveal></div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="section skills" id="skills">
+    <div class="section__inner">
+      <div class="section__head" data-reveal>
+        <p class="section__label">Keahlian</p>
+        <h2 class="section__title">Skills</h2>
+        <p class="section__sub">Kombinasi kemampuan teknis, kreatif, dan profesional.</p>
+      </div>
+
+      <div class="skills__grid">
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title"><i class="fa-solid fa-palette" aria-hidden="true"></i> Creative</h3>
+          <div class="tag-list">
+            <span class="tag"><i class="fa-solid fa-camera"></i> Photography</span>
+            <span class="tag"><i class="fa-solid fa-video"></i> Videography</span>
+            <span class="tag"><i class="fa-solid fa-pen-nib"></i> Graphic Design</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Professional</h3>
+          <div class="tag-list">
+            <span class="tag"><i class="fa-solid fa-bullhorn"></i> Public Speaking</span>
+            <span class="tag"><i class="fa-solid fa-compass"></i> Leadership</span>
+            <span class="tag"><i class="fa-solid fa-people-group"></i> Teamwork</span>
+            <span class="tag"><i class="fa-solid fa-sitemap"></i> Organization</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Office</h3>
+          <div class="tag-list">
+            <span class="tag"><i class="fa-solid fa-table-cells"></i> Microsoft Excel</span>
+            <span class="tag"><i class="fa-solid fa-briefcase"></i> Microsoft Office</span>
+          </div>
+        </div>
+
+        <div class="skill-group" data-reveal>
+          <h3 class="skill-group__title"><i class="fa-solid fa-code" aria-hidden="true"></i> Technology</h3>
+          <div class="tag-list">
+            <span class="tag"><i class="fa-brands fa-laravel"></i> Laravel</span>
+            <span class="tag"><i class="fa-brands fa-php"></i> PHP</span>
+            <span class="tag"><i class="fa-solid fa-database"></i> MySQL</span>
+            <span class="tag"><i class="fa-solid fa-globe"></i> Web Development</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="section achievements" id="achievements">
+    <div class="section__inner">
+      <div class="section__head" data-reveal>
+        <p class="section__label">Pencapaian</p>
+        <h2 class="section__title">Achievements</h2>
+      </div>
+
+      <div class="achieve-list">
+        <div class="achieve-card" data-reveal>
+          <div class="achieve-card__icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
+          <h3>Mahasiswa Berprestasi 3 Tingkat Diploma</h3>
+          <p>Politeknik Negeri Lampung — 2025</p>
+        </div>
+        <div class="achieve-card" data-reveal>
+          <div class="achieve-card__icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
+          <h3>Juara 1 Lomba Poster Tingkat Nasional</h3>
+          <p>Akademi Rejang Lebong — 2024</p>
+        </div>
+        <div class="achieve-card" data-reveal>
+          <div class="achieve-card__icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
+          <h3>Juara 2 Lomba Videografi Bertim Tingkat Kabupaten</h3>
+          <p>Disporapar Mesuji — 2022</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="section education" id="education">
+    <div class="section__inner">
+      <div class="section__head" data-reveal>
+        <p class="section__label">Pendidikan</p>
+        <h2 class="section__title">Education</h2>
+      </div>
+
+      <div class="edu-list">
+        <article class="edu-card" data-reveal>
+          <div class="edu-card__icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
+          <div>
+            <span class="edu-card__period">2023 – 2026</span>
+            <h3>D3 Manajemen Informatika</h3>
+            <p class="edu-card__org">Politeknik Negeri Lampung</p>
+            <p class="edu-card__status">Status: Menunggu proses wisuda</p>
+            <p class="edu-card__highlight"><i class="fa-solid fa-star" aria-hidden="true"></i> Mahasiswa Berprestasi 3 Tingkat Diploma 2025</p>
+          </div>
+        </article>
+
+        <article class="edu-card" data-reveal>
+          <div class="edu-card__icon"><i class="fa-solid fa-school" aria-hidden="true"></i></div>
+          <div>
+            <span class="edu-card__period">2021 – 2023</span>
+            <h3>SMK Negeri 1 Simpang Pematang</h3>
+            <p class="edu-card__highlight"><i class="fa-solid fa-star" aria-hidden="true"></i> Juara 2 Lomba Videografi Bertim Tingkat Kabupaten 2022</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section contact" id="contact">
+    <div class="section__inner">
+      <div class="contact__box" data-reveal>
+        <p class="section__label">Hubungi Saya</p>
+        <h2 class="section__title">Let's Connect</h2>
+        <p class="contact__desc">Interested in working together, discussing a project, or simply connecting? Feel free to reach out.</p>
+
+        <a href="mailto:hendraagusloriko@gmail.com" class="btn btn--primary btn--large">Start a Conversation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+
+        <div class="contact__channels">
+          <a href="mailto:hendraagusloriko@gmail.com" class="contact__channel">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <span>hendraagusloriko@gmail.com</span>
+          </a>
+          <a href="https://wa.me/6285367251426" target="_blank" rel="noopener noreferrer" class="contact__channel">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <span>+62 853-6725-1426</span>
+          </a>
+          <a href="https://www.linkedin.com/in/hendra-agus-loriko-227447293" target="_blank" rel="noopener noreferrer" class="contact__channel">
+            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://www.instagram.com/ikoproject_official/" target="_blank" rel="noopener noreferrer" class="contact__channel">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <span>Instagram</span>
+          </a>
+          <a href="https://www.tiktok.com/@bang_riko46" target="_blank" rel="noopener noreferrer" class="contact__channel">
+            <i class="fa-brands fa-tiktok" aria-hidden="true"></i>
+            <span>TikTok</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__name">HENDRA AGUS LORIKO</span>
+      <span class="footer__tag">Technology × Leadership × Creativity</span>
+    </div>
+    <div class="footer__socials">
+      <a href="https://www.linkedin.com/in/hendra-agus-loriko-227447293" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+      <a href="https://www.instagram.com/ikoproject_official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+      <a href="https://www.tiktok.com/@bang_riko46" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a>
+      <a href="mailto:hendraagusloriko@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope" aria-hidden="true"></i></a>
+    </div>
+    <p class="footer__copy">&copy; 2026 Hendra Agus Loriko. All rights reserved.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas">
+  <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
