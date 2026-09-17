@@ -124,7 +124,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 
 /* ---------- 3. UTILITIES & LAYOUT ---------- */
 .section{ padding: 120px 0; position: relative; }
-.section__inner{ max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+.section__inner{ max-width: var(--container); margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 
 .section__head{ max-width: 640px; margin-bottom: 64px; }
 .section__label{
@@ -138,6 +138,8 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .section__sub{ color: var(--text-muted); font-size: 1.05rem; max-width: 52ch; }
 
 .btn{
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -228,7 +230,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 }
 .nav__brand-dot{ color: var(--accent); }
 
-.nav__links{ display: flex; gap: 30px; }
+.nav__links{ position: relative; display: flex; gap: 30px; }
 .nav__link{
   font-size: 0.92rem;
   font-weight: 500;
@@ -251,6 +253,7 @@ a:focus-visible, button:focus-visible, input:focus-visible{
 .nav__actions{ display: flex; align-items: center; gap: 14px; }
 
 .theme-toggle{
+  overflow: hidden;
   width: 40px; height: 40px;
   border-radius: 50%;
   border: 1px solid var(--border-strong);
@@ -693,6 +696,8 @@ body[data-theme="light"] .theme-toggle .fa-sun{ opacity: 1; transform: scale(1) 
 .creative{ background: var(--bg-alt); }
 .creative__filters{ display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
 .filter-btn{
+  position: relative;
+  overflow: hidden;
   padding: 10px 22px;
   border-radius: 999px;
   border: 1px solid var(--border-strong);
@@ -888,6 +893,7 @@ body[data-theme="light"] .theme-toggle .fa-sun{ opacity: 1; transform: scale(1) 
 .footer__copy{ width: 100%; text-align: center; color: var(--text-muted); font-size: 0.82rem; margin-top: 8px; }
 
 .back-to-top{
+  overflow: hidden;
   position: fixed;
   bottom: 28px; right: 28px;
   width: 46px; height: 46px;
@@ -1037,4 +1043,249 @@ body[data-theme="light"] .theme-toggle .fa-sun{ opacity: 1; transform: scale(1) 
   .leadership__pillars{ grid-template-columns: 1fr; }
   .gallery{ grid-template-columns: 1fr 1fr; grid-auto-rows: 110px; }
   .hero__cta .btn, .btn--large{ font-size: 0.88rem; padding: 13px 20px; }
+}
+
+/* ==========================================================================
+   19. ENHANCED VISUAL FLAIR & MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* --- Scroll progress bar --- */
+.scroll-progress{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 1000;
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress span{
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: var(--gradient-accent);
+  box-shadow: 0 0 12px 0 var(--accent);
+  transition: width 0.12s linear;
+}
+
+/* --- Cursor glow (desktop, pointer:fine only — toggled on via JS) --- */
+.cursor-glow{
+  position: fixed;
+  top: 0; left: 0;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent) 0%, var(--accent-2) 35%, transparent 70%);
+  opacity: 0;
+  filter: blur(60px);
+  mix-blend-mode: var(--cursor-blend, screen);
+  transform: translate3d(-50%, -50%, 0);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.4s var(--ease);
+  will-change: transform;
+}
+.cursor-glow.is-active{ opacity: 0.16; }
+body[data-theme="light"] .cursor-glow{ --cursor-blend: multiply; opacity: 0; }
+body[data-theme="light"] .cursor-glow.is-active{ opacity: 0.10; }
+
+/* --- Loader progress bar --- */
+.loader__bar{
+  display: block;
+  width: 140px; height: 2px;
+  margin-top: 20px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--border-strong);
+}
+.loader__bar i{
+  display: block;
+  height: 100%; width: 40%;
+  background: var(--gradient-accent);
+  transform: translateX(-120%);
+  animation: loaderBar 1.1s ease-in-out forwards;
+}
+@keyframes loaderBar{
+  0%{ transform: translateX(-120%); }
+  60%{ transform: translateX(160%); }
+  100%{ transform: translateX(280%); }
+}
+
+/* --- Hero name shimmer --- */
+.hero__name--shimmer{
+  background-image: linear-gradient(100deg, var(--text) 28%, var(--accent) 45%, var(--accent-2) 55%, var(--text) 72%);
+  background-size: 220% auto;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 7s linear infinite;
+}
+@keyframes shimmer{
+  0%{ background-position: 0% 50%; }
+  100%{ background-position: -220% 50%; }
+}
+
+/* --- Rotating gradient ring behind portrait --- */
+.portrait-frame__spin{
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: conic-gradient(from 0deg, var(--accent), var(--accent-2), transparent 45%, var(--accent));
+  opacity: 0.6;
+  filter: blur(3px);
+  animation: spinRing 9s linear infinite;
+}
+@keyframes spinRing{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+
+/* --- Nav active pill indicator (desktop) --- */
+.nav__pill{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 30px;
+  width: 0;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  transform: translateY(-50%);
+  transition: width 0.35s var(--ease), transform 0.35s var(--ease), opacity 0.2s var(--ease);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.nav__pill.is-active{ opacity: 1; }
+.nav__link{ z-index: 1; }
+
+/* --- Ambient background blobs (per section) --- */
+.ambient-blob{
+  position: absolute;
+  width: 440px; height: 440px;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+}
+.ambient-blob--a{
+  top: -120px; left: -140px;
+  background: var(--accent);
+  animation: driftA 24s ease-in-out infinite alternate;
+}
+.ambient-blob--b{
+  bottom: -140px; right: -120px;
+  background: var(--accent-2);
+  animation: driftB 28s ease-in-out infinite alternate;
+}
+@keyframes driftA{
+  0%{ transform: translate(0, 0) scale(1); }
+  100%{ transform: translate(60px, 40px) scale(1.15); }
+}
+@keyframes driftB{
+  0%{ transform: translate(0, 0) scale(1); }
+  100%{ transform: translate(-50px, -30px) scale(1.1); }
+}
+
+/* --- Tilt cards (JS sets inline transform on pointer devices) --- */
+.tilt{
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out, border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  will-change: transform;
+}
+
+/* --- Button / control ripple --- */
+.ripple{
+  position: absolute;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.35;
+  transform: scale(0);
+  pointer-events: none;
+  animation: rippleAnim 0.6s var(--ease) forwards;
+}
+@keyframes rippleAnim{
+  to{ transform: scale(2.6); opacity: 0; }
+}
+
+/* --- Diversified scroll-reveal directions --- */
+[data-reveal="left"]{ transform: translateX(-46px); }
+[data-reveal="left"].is-visible{ transform: translateX(0); }
+[data-reveal="right"]{ transform: translateX(46px); }
+[data-reveal="right"].is-visible{ transform: translateX(0); }
+[data-reveal="scale"]{ transform: scale(0.88); }
+[data-reveal="scale"].is-visible{ transform: scale(1); }
+
+.timeline__row:nth-child(odd){ transform: translateX(-32px); }
+.timeline__row:nth-child(even){ transform: translateX(32px); }
+.timeline__row.is-visible{ transform: translateX(0) !important; }
+
+.achieve-card:nth-child(1){ transform: translateY(20px) rotate(-2deg); }
+.achieve-card:nth-child(2){ transform: translateY(20px) scale(0.9); }
+.achieve-card:nth-child(3){ transform: translateY(20px) rotate(2deg); }
+.achieve-card.is-visible{ transform: translateY(0) rotate(0deg) scale(1) !important; }
+
+.tag{ transform: translateY(10px) scale(0.9); opacity: 0; transition: transform 0.4s var(--ease), opacity 0.4s var(--ease), border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease); }
+.skill-group.is-visible .tag{ transform: translateY(0) scale(1); opacity: 1; }
+.skill-group.is-visible .tag:nth-child(1){ transition-delay: 0.03s; }
+.skill-group.is-visible .tag:nth-child(2){ transition-delay: 0.09s; }
+.skill-group.is-visible .tag:nth-child(3){ transition-delay: 0.15s; }
+.skill-group.is-visible .tag:nth-child(4){ transition-delay: 0.21s; }
+
+/* --- Section title mask-wipe reveal --- */
+.section__title{
+  clip-path: inset(0 100% 0 0);
+}
+.section__head.is-visible .section__title,
+.leadership__text.is-visible .section__title,
+.contact__box.is-visible .section__title{
+  animation: titleWipe 0.9s var(--ease) forwards;
+}
+@keyframes titleWipe{
+  to{ clip-path: inset(0 0% 0 0); }
+}
+
+/* --- Mobile menu: numbered links + stagger entrance --- */
+@media (max-width: 768px){
+  .nav__pill{ display: none; }
+  .nav__links{ counter-reset: navcount; }
+  .nav__link{
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+  .nav__link::before{
+    counter-increment: navcount;
+    content: "0" counter(navcount);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    font-family: var(--font-body);
+  }
+  .nav__links.is-open .nav__link{ opacity: 1; transform: translateX(0); }
+  .nav__links.is-open .nav__link:nth-child(2){ transition-delay: 0.05s; }
+  .nav__links.is-open .nav__link:nth-child(3){ transition-delay: 0.1s; }
+  .nav__links.is-open .nav__link:nth-child(4){ transition-delay: 0.15s; }
+  .nav__links.is-open .nav__link:nth-child(5){ transition-delay: 0.2s; }
+  .nav__links.is-open .nav__link:nth-child(6){ transition-delay: 0.25s; }
+  .nav__links.is-open .nav__link:nth-child(7){ transition-delay: 0.3s; }
+}
+
+/* --- Respect reduced motion for all new effects --- */
+@media (prefers-reduced-motion: reduce){
+  .hero__name--shimmer{ animation: none; background-position: 0% 50%; }
+  .portrait-frame__spin{ animation: none; }
+  .ambient-blob{ animation: none; }
+  .cursor-glow{ display: none; }
+  .tilt{ transition: none; }
+  .timeline__row, .achieve-card, .tag{ transform: none !important; }
+  .section__title{ clip-path: none !important; animation: none !important; }
+}
+
+/* --- Hide cursor glow entirely on touch devices --- */
+@media (hover: none), (pointer: coarse){
+  .cursor-glow{ display: none; }
 }

@@ -29,11 +29,18 @@
 </head>
 <body data-theme="dark">
 
+<!-- ============ SCROLL PROGRESS ============ -->
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"><span></span></div>
+
+<!-- ============ CURSOR GLOW (desktop only) ============ -->
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
 <!-- ============ LOADER ============ -->
 <div class="loader" id="loader" aria-hidden="true">
   <div class="loader__mark">
     <span class="loader__initials">HL</span>
     <span class="loader__name">HENDRA AGUS LORIKO</span>
+    <span class="loader__bar"><i></i></span>
   </div>
 </div>
 
@@ -46,6 +53,7 @@
     <a href="#home" class="nav__brand" aria-label="Beranda Hendra Agus Loriko">HL<span class="nav__brand-dot">.</span></a>
 
     <nav class="nav__links" id="navLinks" aria-label="Navigasi utama">
+      <span class="nav__pill" id="navPill" aria-hidden="true"></span>
       <a href="#about" class="nav__link">Tentang</a>
       <a href="#experience" class="nav__link">Pengalaman</a>
       <a href="#projects" class="nav__link">Proyek</a>
@@ -80,7 +88,7 @@
     <div class="hero__inner">
       <div class="hero__text" data-reveal>
         <p class="hero__eyebrow">Hello, I'm</p>
-        <h1 class="hero__name">Hendra Agus<br>Loriko</h1>
+        <h1 class="hero__name hero__name--shimmer">Hendra Agus<br>Loriko</h1>
         <p class="hero__role">Lulusan D3 Manajemen Informatika &middot; Web Developer &middot; Creative &amp; Organization</p>
         <p class="hero__desc">Lulusan Program Studi D3 Manajemen Informatika Politeknik Negeri Lampung yang memiliki pengalaman dalam pengembangan sistem berbasis web, kepemimpinan organisasi, serta bidang kreatif seperti fotografi, videografi, dan desain.</p>
 
@@ -97,12 +105,13 @@
         </div>
       </div>
 
-      <div class="hero__portrait" data-reveal>
+      <div class="hero__portrait" data-reveal="scale">
         <!-- Foto profil: cukup letakkan file bernama persis "profile.jpg" di
              assets/img/profile.jpg — foto akan tampil otomatis. Jika file
              belum ada / gagal dimuat, placeholder inisial "HL" akan tetap
              ditampilkan sebagai cadangan. Tidak perlu mengedit kode apa pun. -->
         <div class="portrait-frame">
+          <div class="portrait-frame__spin" aria-hidden="true"></div>
           <img
             src="assets/img/profile.jpg"
             alt="Foto Hendra Agus Loriko"
@@ -131,6 +140,7 @@
 
   <!-- ============ ABOUT ============ -->
   <section class="section about" id="about">
+    <div class="ambient-blob ambient-blob--a" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="section__head" data-reveal>
         <p class="section__label">Tentang Saya</p>
@@ -198,6 +208,7 @@
 
   <!-- ============ EXPERIENCE ============ -->
   <section class="section experience" id="experience">
+    <div class="ambient-blob ambient-blob--b" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="section__head" data-reveal>
         <p class="section__label">Perjalanan Profesional</p>
@@ -273,33 +284,34 @@
 
   <!-- ============ LEADERSHIP ============ -->
   <section class="section leadership" id="leadership">
+    <div class="ambient-blob ambient-blob--a" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="leadership__grid">
-        <div class="leadership__text" data-reveal>
+        <div class="leadership__text" data-reveal="left">
           <p class="section__label">Leadership &amp; Organization</p>
           <h2 class="section__title">Memimpin dengan Arah yang Jelas</h2>
           <p class="leadership__highlight">Ketua Umum PKSE Politeknik Negeri Lampung <span>2025/2026</span></p>
           <p class="section__sub">Mengoordinasikan pengurus, divisi, dan mitra untuk menjalankan program kerja organisasi secara konsisten — dari perencanaan hingga evaluasi.</p>
         </div>
 
-        <div class="leadership__pillars" data-reveal>
-          <div class="pillar-card">
+        <div class="leadership__pillars" data-reveal="right">
+          <div class="pillar-card tilt">
             <i class="fa-solid fa-compass" aria-hidden="true"></i>
             <h3>Leadership</h3>
           </div>
-          <div class="pillar-card">
+          <div class="pillar-card tilt">
             <i class="fa-solid fa-people-arrows" aria-hidden="true"></i>
             <h3>Coordination</h3>
           </div>
-          <div class="pillar-card">
+          <div class="pillar-card tilt">
             <i class="fa-solid fa-comments" aria-hidden="true"></i>
             <h3>Communication</h3>
           </div>
-          <div class="pillar-card">
+          <div class="pillar-card tilt">
             <i class="fa-solid fa-people-group" aria-hidden="true"></i>
             <h3>Teamwork</h3>
           </div>
-          <div class="pillar-card">
+          <div class="pillar-card tilt">
             <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
             <h3>Decision Making</h3>
           </div>
@@ -310,6 +322,7 @@
 
   <!-- ============ PROJECTS ============ -->
   <section class="section projects" id="projects">
+    <div class="ambient-blob ambient-blob--b" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="section__head" data-reveal>
         <p class="section__label">Portofolio Teknis</p>
@@ -324,6 +337,7 @@
 
   <!-- ============ CREATIVE ============ -->
   <section class="section creative" id="creative">
+    <div class="ambient-blob ambient-blob--a" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="section__head" data-reveal>
         <p class="section__label">Karya Visual</p>
@@ -346,6 +360,7 @@
 
   <!-- ============ SKILLS ============ -->
   <section class="section skills" id="skills">
+    <div class="ambient-blob ambient-blob--b" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="section__head" data-reveal>
         <p class="section__label">Keahlian</p>
@@ -354,7 +369,7 @@
       </div>
 
       <div class="skills__grid">
-        <div class="skill-group" data-reveal>
+        <div class="skill-group" data-reveal="left">
           <h3 class="skill-group__title"><i class="fa-solid fa-palette" aria-hidden="true"></i> Creative</h3>
           <div class="tag-list">
             <span class="tag"><i class="fa-solid fa-camera"></i> Photography</span>
@@ -363,7 +378,7 @@
           </div>
         </div>
 
-        <div class="skill-group" data-reveal>
+        <div class="skill-group" data-reveal="right">
           <h3 class="skill-group__title"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Professional</h3>
           <div class="tag-list">
             <span class="tag"><i class="fa-solid fa-bullhorn"></i> Public Speaking</span>
@@ -373,7 +388,7 @@
           </div>
         </div>
 
-        <div class="skill-group" data-reveal>
+        <div class="skill-group" data-reveal="left">
           <h3 class="skill-group__title"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Office</h3>
           <div class="tag-list">
             <span class="tag"><i class="fa-solid fa-table-cells"></i> Microsoft Excel</span>
@@ -381,7 +396,7 @@
           </div>
         </div>
 
-        <div class="skill-group" data-reveal>
+        <div class="skill-group" data-reveal="right">
           <h3 class="skill-group__title"><i class="fa-solid fa-code" aria-hidden="true"></i> Technology</h3>
           <div class="tag-list">
             <span class="tag"><i class="fa-brands fa-laravel"></i> Laravel</span>
@@ -396,6 +411,7 @@
 
   <!-- ============ ACHIEVEMENTS ============ -->
   <section class="section achievements" id="achievements">
+    <div class="ambient-blob ambient-blob--a" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="section__head" data-reveal>
         <p class="section__label">Pencapaian</p>
@@ -403,17 +419,17 @@
       </div>
 
       <div class="achieve-list">
-        <div class="achieve-card" data-reveal>
+        <div class="achieve-card tilt" data-reveal>
           <div class="achieve-card__icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
           <h3>Mahasiswa Berprestasi 3 Tingkat Diploma</h3>
           <p>Politeknik Negeri Lampung — 2025</p>
         </div>
-        <div class="achieve-card" data-reveal>
+        <div class="achieve-card tilt" data-reveal>
           <div class="achieve-card__icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
           <h3>Juara 1 Lomba Poster Tingkat Nasional</h3>
           <p>Akademi Rejang Lebong — 2024</p>
         </div>
-        <div class="achieve-card" data-reveal>
+        <div class="achieve-card tilt" data-reveal>
           <div class="achieve-card__icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></div>
           <h3>Juara 2 Lomba Videografi Bertim Tingkat Kabupaten</h3>
           <p>Disporapar Mesuji — 2022</p>
@@ -424,6 +440,7 @@
 
   <!-- ============ EDUCATION ============ -->
   <section class="section education" id="education">
+    <div class="ambient-blob ambient-blob--b" aria-hidden="true"></div>
     <div class="section__inner">
       <div class="section__head" data-reveal>
         <p class="section__label">Pendidikan</p>
@@ -431,7 +448,7 @@
       </div>
 
       <div class="edu-list">
-        <article class="edu-card" data-reveal>
+        <article class="edu-card" data-reveal="left">
           <div class="edu-card__icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div>
           <div>
             <span class="edu-card__period">2023 – 2026</span>
@@ -442,7 +459,7 @@
           </div>
         </article>
 
-        <article class="edu-card" data-reveal>
+        <article class="edu-card" data-reveal="right">
           <div class="edu-card__icon"><i class="fa-solid fa-school" aria-hidden="true"></i></div>
           <div>
             <span class="edu-card__period">2021 – 2023</span>
@@ -456,8 +473,9 @@
 
   <!-- ============ CONTACT ============ -->
   <section class="section contact" id="contact">
+    <div class="ambient-blob ambient-blob--a" aria-hidden="true"></div>
     <div class="section__inner">
-      <div class="contact__box" data-reveal>
+      <div class="contact__box" data-reveal="scale">
         <p class="section__label">Hubungi Saya</p>
         <h2 class="section__title">Let's Connect</h2>
         <p class="contact__desc">Interested in working together, discussing a project, or simply connecting? Feel free to reach out.</p>

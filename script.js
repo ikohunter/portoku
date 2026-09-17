@@ -155,13 +155,28 @@
       });
     }
 
-    // Active link on scroll
+    // Active link on scroll + sliding pill indicator
+    var pill = document.getElementById("navPill");
     var sections = [];
     navAnchors.forEach(function (a) {
       var id = a.getAttribute("href");
       var target = id ? document.querySelector(id) : null;
       if (target) sections.push({ link: a, target: target });
     });
+
+    function updatePill(activeLink) {
+      if (!pill || !links) return;
+      if (!activeLink || window.innerWidth <= 768) {
+        pill.classList.remove("is-active");
+        return;
+      }
+      var linkRect = activeLink.getBoundingClientRect();
+      var parentRect = links.getBoundingClientRect();
+      pill.style.width = linkRect.width + 24 + "px";
+      pill.style.transform =
+        "translate(" + (linkRect.left - parentRect.left - 12) + "px, -50%)";
+      pill.classList.add("is-active");
+    }
 
     function onScrollSpy() {
       var scrollPos = window.scrollY + 140;
@@ -172,9 +187,11 @@
       sections.forEach(function (s) {
         s.link.classList.toggle("is-active", s === current);
       });
+      updatePill(current ? current.link : null);
     }
     onScrollSpy();
     window.addEventListener("scroll", onScrollSpy, { passive: true });
+    window.addEventListener("resize", debounce(onScrollSpy, 150));
   }
 
   /* ---------------------------------------------------------------------
@@ -260,7 +277,7 @@
           .join("");
 
         return (
-          '<article class="project-card">' +
+          '<article class="project-card tilt">' +
           '<div class="project-card__media">' +
           '<span class="project-card__number">' + escapeHtml(p.number) + "</span>" +
           media +
@@ -428,6 +445,109 @@
   }
 
   /* ---------------------------------------------------------------------
+     10. SCROLL PROGRESS BAR
+  --------------------------------------------------------------------- */
+  function initScrollProgress() {
+    var bar = document.querySelector(".scroll-progress span");
+    if (!bar) return;
+
+    function update() {
+      var scrollTop = window.scrollY;
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      bar.style.width = pct + "%";
+    }
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", debounce(update, 200));
+  }
+
+  /* ---------------------------------------------------------------------
+     11. CURSOR GLOW (desktop pointer devices only)
+  --------------------------------------------------------------------- */
+  function initCursorGlow() {
+    var glow = document.getElementById("cursorGlow");
+    if (!glow || prefersReducedMotion) return;
+    var isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!isFinePointer) return;
+
+    var rafId = null;
+    var targetX = window.innerWidth / 2;
+    var targetY = window.innerHeight / 2;
+
+    function move(e) {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      glow.classList.add("is-active");
+      if (rafId === null) {
+        rafId = requestAnimationFrame(render);
+      }
+    }
+
+    function render() {
+      glow.style.transform = "translate3d(" + targetX + "px, " + targetY + "px, 0)";
+      rafId = null;
+    }
+
+    window.addEventListener("mousemove", move, { passive: true });
+    document.addEventListener("mouseleave", function () {
+      glow.classList.remove("is-active");
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     12. TILT EFFECT (project / achievement / pillar cards — fine pointer only)
+  --------------------------------------------------------------------- */
+  function initTilt() {
+    if (prefersReducedMotion) return;
+    var isFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (!isFinePointer) return;
+
+    var cards = document.querySelectorAll(".tilt");
+    cards.forEach(function (card) {
+      card.addEventListener("mousemove", function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var rotateX = ((y / rect.height) - 0.5) * -8;
+        var rotateY = ((x / rect.width) - 0.5) * 10;
+        card.style.transform =
+          "perspective(900px) rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateY(-4px)";
+      });
+      card.addEventListener("mouseleave", function () {
+        card.style.transform = "";
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     13. RIPPLE EFFECT (buttons, filters, toggles)
+  --------------------------------------------------------------------- */
+  function initRipple() {
+    if (prefersReducedMotion) return;
+    var selector = ".btn, .filter-btn, .theme-toggle, .back-to-top";
+
+    document.addEventListener("pointerdown", function (e) {
+      var el = e.target.closest ? e.target.closest(selector) : null;
+      if (!el) return;
+
+      var rect = el.getBoundingClientRect();
+      var size = Math.max(rect.width, rect.height) * 1.4;
+      var span = document.createElement("span");
+      span.className = "ripple";
+      span.style.width = size + "px";
+      span.style.height = size + "px";
+      span.style.left = e.clientX - rect.left - size / 2 + "px";
+      span.style.top = e.clientY - rect.top - size / 2 + "px";
+
+      el.appendChild(span);
+      window.setTimeout(function () {
+        if (span.parentNode) span.parentNode.removeChild(span);
+      }, 650);
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      HELPERS
   --------------------------------------------------------------------- */
   function debounce(fn, wait) {
@@ -460,5 +580,9 @@
     initReveal();
     initBackToTop();
     initParticles();
+    initScrollProgress();
+    initCursorGlow();
+    initTilt();
+    initRipple();
   });
 })();
